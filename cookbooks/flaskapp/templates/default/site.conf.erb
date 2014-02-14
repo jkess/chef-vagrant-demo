@@ -1,0 +1,21 @@
+<VirtualHost *>
+    ServerName <%= node[:ipaddress] %>
+    DocumentRoot <%= @params[:docroot] %>
+
+    WSGIDaemonProcess  <%= @params[:server_name] %> user=apache group=apache processes=5 threads=1
+    WSGIScriptAlias / <%= @params[:docroot] %>/server.wsgi
+
+    <Directory <%= @params[:docroot] %>>
+        WSGIProcessGroup <%= @params[:server_name] %>
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    ErrorLog /var/log/httpd/<%= @params[:server_name] %>-error.log
+    LogLevel warn
+
+    CustomLog /var/log/httpd/<%= @params[:server_name] %>-access.log combined
+    ServerSignature On
+
+</VirtualHost>
