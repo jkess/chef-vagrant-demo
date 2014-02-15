@@ -20,11 +20,11 @@ This document outlines how to deploy applications with Chef and test locally usi
         mkdir myproject
         cd myproject
 
-- Clone this repository (note: I'm cloning to the current directory with `.`)
+2. Clone this repository (note: I'm cloning to the current directory with `.`)
 
         git clone https://github.com/jkess/chef-demo .
 
-- Add the base boxes. [Bento](https://github.com/opscode/bento) is a good source for Linux VirtualBox's
+3. Add the base boxes. [Bento](https://github.com/opscode/bento) is a good source for Linux VirtualBox's
 
     CentOS 6.5:
 
@@ -34,7 +34,7 @@ This document outlines how to deploy applications with Chef and test locally usi
 
         vagrant box add ubuntu13.10 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-13.10_chef-provisionerless.box
 
-- Configure `Vagrantfile`
+4. Configure `Vagrantfile`
     
         # base image to clone
         config.vm.box = "centos65"
@@ -49,15 +49,15 @@ This document outlines how to deploy applications with Chef and test locally usi
           chef.add_recipe "flaskapp"
         end
 
-- Boot the guest image
+5. Boot the guest image
 
         vagrant up
 
-- Re-run the Chef recipe
+6. Re-run the Chef recipe
 
         vagrant provision
 
-- SSH into the host
+7. SSH into the host
 
         vagrant ssh
 
